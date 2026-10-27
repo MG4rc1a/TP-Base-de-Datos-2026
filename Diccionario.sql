@@ -13,7 +13,6 @@ CREATE TABLE cliente (
     CONSTRAINT pk_cliente PRIMARY KEY (DNI)
 );
 CREATE TABLE vendedor (
-    -- Ver de generar numeros
     nro_vendedor INT NOT NULL AUTO_INCREMENT,
     DNI VARCHAR(9) NOT NULL,
     nombre VARCHAR(50) NOT NULL,
