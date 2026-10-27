@@ -180,10 +180,10 @@ CREATE TRIGGER trigger_update_auditoria_zapato
             BEGIN
             IF OLD.precio <> NEW.precio THEN
                 INSERT INTO auditoria_precio_zapato(
-                    modelo, color, precio_anterior, precio_nuevo, usuario
+                    modelo, color, fecha, precio_anterior, precio_nuevo, usuario
                 )
                 VALUES (
-                    OLD.modelo, OLD.color, OLD.precio, NEW.precio, USER() 
+                    OLD.modelo, OLD.color, CURRENT_TIMESTAMP, OLD.precio, NEW.precio, USER() 
                 );
             END IF;
     END $$
