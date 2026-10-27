@@ -12,12 +12,12 @@ INSERT INTO cliente (DNI, nombre, apellido, direccion) VALUES
 ('33222111', 'Mariana', 'Frutos', 'Pdte. Peron 444'),
 ('22211000', 'Gonzalo', 'García', 'Marcelo T. Alvear 1212');
 
-INSERT INTO vendedor (nro_vendedor, DNI, nombre, apellido, direccion) VALUES
-(1, '22111000', 'Juan' , 'Perez', 'Pdte. Peron 555'),
-(2, '33444555', 'Pepe', 'Castillo', 'Alberdi 222'),
-(3, '66777888', 'Marta', 'Diaz', 'Constitucion 444'),
-(4, '99101111', 'Giovanni', 'Vásquez', 'Colombia 1212'),
-(5, '11000222', 'Alejo', 'Rossaroli', 'Marcelo T. Alvear 2121');
+INSERT INTO vendedor (DNI, nombre, apellido, direccion) VALUES
+('22111000', 'Juan' , 'Perez', 'Pdte. Peron 555'),
+('33444555', 'Pepe', 'Castillo', 'Alberdi 222'),
+('66777888', 'Marta', 'Diaz', 'Constitucion 444'),
+('99101111', 'Giovanni', 'Vásquez', 'Colombia 1212'),
+('11000222', 'Alejo', 'Rossaroli', 'Marcelo T. Alvear 2121');
 
 INSERT INTO dia (dia_semana) VALUES 
 ('Lunes'), 
