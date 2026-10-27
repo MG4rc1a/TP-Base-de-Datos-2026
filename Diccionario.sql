@@ -145,7 +145,7 @@ CREATE TABLE detalle_factura(
     color VARCHAR(20) NOT NULL,
     numero INTEGER NOT NULL,
     cantidad INT NOT NULL,
-    precio_venta DECIMAL(20,2) NOT NULL,
+    precio_venta DECIMAL(8,2) NOT NULL,
     descuento_aplicado DECIMAL(5,2) NOT NULL,
     CONSTRAINT pk_detalle_factura PRIMARY KEY (nro_factura, modelo, color, numero),
     CONSTRAINT fk_detalle_factura FOREIGN KEY (modelo, color, numero) REFERENCES zapato_numero (modelo, color, numero)
@@ -165,8 +165,8 @@ CREATE TABLE auditoria_precio_zapato (
     modelo VARCHAR(20) NOT NULL,
     color VARCHAR(20) NOT NULL,
     fecha TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    precio_anterior DECIMAL(20,2) NOT NULL,
-    precio_nuevo DECIMAL(20,2) NOT NULL,
+    precio_anterior DECIMAL(8,2) NOT NULL,
+    precio_nuevo DECIMAL(8,2) NOT NULL,
     usuario VARCHAR(50) NOT NULL,
     CONSTRAINT pk_auditoria_precio PRIMARY KEY (nro_auditoria),
     CONSTRAINT fk_audotoria_precio FOREIGN KEY (modelo, color) REFERENCES zapato (modelo, color)
