@@ -17,8 +17,13 @@ public class GestionarProveedor implements Gestionable {
         String tel_fijo = sc.nextLine();
 
         String query = "INSERT INTO proveedor (CUIT, razon_social, direccion, telefono_fijo) VALUES (?, ?, ?, ?)";
-         try (PreparedStatement statement = connection.prepareStatement(query))
+         try (PreparedStatement statement = conn.prepareStatement(query))
         {
+            statement.setString(1, cuit);
+            statement.setString(2, razon_social);
+            statement.setString(3, direccion);
+            statement.setString(4, tel_fijo);
+            statement.execute();
         } catch (SQLException e) {
             System.err.format("SQL State: %s\n%s", e.getSQLState(), e.getMessage());
         }
