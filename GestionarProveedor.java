@@ -27,13 +27,23 @@ public class GestionarProveedor implements Gestionable {
         } catch (SQLException e) {
             System.err.format("SQL State: %s\n%s", e.getSQLState(), e.getMessage());
         }
-        return;
     }
 
     @Override
     public void delete(Connection conn, Scanner sc) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'delete'");
+        System.out.println("Insertar CUIT:");
+        String cuit = sc.nextLine();
+
+        String query = "DELETE FROM proveedor WHERE CUIT = ?";
+        try (PreparedStatement statement = conn.prepareStatement(query))
+        {
+            statement.setString(1, cuit);
+            int filas_afectadas = statement.executeUpdate();
+            String respuesta = (filas_afectadas > 0) ? (filas_afectadas + " filas afectadas") : ("No se ha encontrado un proveedor con ese CUIT");
+            System.out.println(respuesta);
+        } catch (SQLException e) {
+            System.err.format("SQL State: %s\n%s", e.getSQLState(), e.getMessage());
+        }
     }
 
     @Override
