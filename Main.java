@@ -17,13 +17,12 @@ public class Main {
             {
                 System.out.println("#####################################");
                 System.out.println("Opciones (Proveedor) = ");
-                System.out.println("1 - Inserta");
+                System.out.println("1 - Insertar");
                 System.out.println("2 - Remover");
-                System.out.println("3 - Printear");
+                System.out.println("3 - Printear todos");
                 System.out.println("Consultas generales =");
                 System.out.println("4 - ");
-                System.out.println("Consultas generales =");
-                System.out.println("0 - ");
+                System.out.println("0 - Terminar programa");
                 System.out.println("#####################################");
 
                 try {opcion = Integer.parseInt(sc.nextLine());
@@ -37,19 +36,18 @@ public class Main {
                     case 2: gestorProveedor.delete(conn, sc); break;
                     case 3: gestorProveedor.printAll(conn); break;
                     case 4: consultaSQL(conn, sc); break;
-                    case 0: System.out.println("Terminando programa"); break;
+                    case 0: System.out.println("Terminando programa..."); break;
                     default: System.out.println("No existe esa opcion"); break;
                 }
             }
         } catch (SQLException e) {
-            System.err.format("SQL State: %s\n%s", e.getSQLState(), e.getMessage());
+            System.err.format("SQL State: %s\n%s\n", e.getSQLState(), e.getMessage());
         }
     }
 
     private static void consultaSQL(Connection conn, Scanner sc)
     {
-        System.out.println("Inserte un comando SQL valido (SELECT, INSERT, DELETE)");
-        System.out.println("");
+        System.out.println("Inserte un comando SQL valido (SELECT, INSERT, DELETE...)\n");
 
         String query = sc.nextLine().trim();
         if (query.isEmpty())
@@ -57,6 +55,7 @@ public class Main {
             System.out.println("Sentencia vacia");
             return;
         }
+
 
         try (Statement statement = conn.createStatement() )
         {
@@ -77,8 +76,8 @@ public class Main {
                         {
                             Object atributo = tuplas.getObject(i);
                             String nombreColumna = metadata.getColumnLabel(i);
-                            String atributoAux = atributo != null ? atributo.toString() : "NULL";
-                            System.out.println(nombreColumna + " = " + atributoAux);
+                            String valorAtributo = atributo != null ? atributo.toString() : "NULL";
+                            System.out.println(nombreColumna + " = " + valorAtributo);
                         }
                         System.out.println("-----------------------------------");
                     }
@@ -92,7 +91,7 @@ public class Main {
                 System.out.println(respuesta);
             }
         } catch (SQLException e) {
-            System.err.format("SQL State: %s\n%s", e.getSQLState(), e.getMessage());
+            System.err.format("SQL State: %s\n%s\n", e.getSQLState(), e.getMessage());
         }
     }
 }

@@ -18,6 +18,7 @@ public class GestionarProveedor implements Gestionable {
         String tel_fijo = sc.nextLine();
 
         String query = "INSERT INTO proveedor (CUIT, razon_social, direccion, telefono_fijo) VALUES (?, ?, ?, ?)";
+
          try (PreparedStatement statement = conn.prepareStatement(query))
         {
             statement.setString(1, cuit);
@@ -25,8 +26,10 @@ public class GestionarProveedor implements Gestionable {
             statement.setString(3, direccion);
             statement.setString(4, tel_fijo);
             statement.execute();
+            System.out.println("Comando ejecutado =");
+            System.out.println(statement.toString() );
         } catch (SQLException e) {
-            System.err.format("SQL State: %s\n%s", e.getSQLState(), e.getMessage());
+            System.err.format("SQL State: %s\n%s\n", e.getSQLState(), e.getMessage());
         }
     }
 
@@ -39,11 +42,13 @@ public class GestionarProveedor implements Gestionable {
         try (PreparedStatement statement = conn.prepareStatement(query))
         {
             statement.setString(1, cuit);
-            int filas_afectadas = statement.executeUpdate();
-            String respuesta = (filas_afectadas > 0) ? (filas_afectadas + " filas afectadas") : ("No se ha encontrado un proveedor con ese CUIT");
+            int tuplas_afectadas = statement.executeUpdate();
+            System.out.println("Comando ejecutado =");
+            System.out.println(statement.toString() );
+            String respuesta = (tuplas_afectadas > 0) ? (tuplas_afectadas + " tuplas afectadas") : ("No se ha encontrado un proveedor con ese CUIT");
             System.out.println(respuesta);
         } catch (SQLException e) {
-            System.err.format("SQL State: %s\n%s", e.getSQLState(), e.getMessage());
+            System.err.format("SQL State: %s\n%s\n", e.getSQLState(), e.getMessage());
         }
     }
 
@@ -52,22 +57,27 @@ public class GestionarProveedor implements Gestionable {
         String query = "SELECT * FROM proveedor";
         try (PreparedStatement statement = conn.prepareStatement(query))
         {
+            System.out.println("Comando ejecutado =");
+            System.out.println(query);
             ResultSet tuplas = statement.executeQuery();
 
             System.out.println("#####################################");
             System.out.println("Listado de Proveedores");
             System.out.println("#####################################");
-
+            int totalProveedores = 0;
             while (tuplas.next() )
             {
+                totalProveedores++;
+                System.out.println("-------------------------------------");
                 System.out.println("CUIT: " + tuplas.getString("CUIT"));
                 System.out.println("Razon Social: " + tuplas.getString("razon_social"));
                 System.out.println("Direccion: " + tuplas.getString("direccion"));
                 System.out.println("Telefono Fijo: " + tuplas.getString("telefono_fijo"));
             }
-            System.out.println("#####################################");
+            System.out.println("-------------------------------------");
+            System.out.println("Cantidad total de proveedores = " + totalProveedores);
         } catch (SQLException e) {
-            System.err.format("SQL State: %s\n%s", e.getSQLState(), e.getMessage());
+            System.err.format("SQL State: %s\n%s\n", e.getSQLState(), e.getMessage());
         }
     }
 
