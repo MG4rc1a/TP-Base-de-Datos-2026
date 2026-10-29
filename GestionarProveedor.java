@@ -1,5 +1,6 @@
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Scanner;
 
@@ -48,8 +49,26 @@ public class GestionarProveedor implements Gestionable {
 
     @Override
     public void printAll(Connection conn) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'printAll'");
+        String query = "SELECT * FROM proveedor";
+        try (PreparedStatement statement = conn.prepareStatement(query))
+        {
+            ResultSet tuplas = statement.executeQuery();
+
+            System.out.println("#####################################");
+            System.out.println("Listado de Proveedores");
+            System.out.println("#####################################");
+
+            while (tuplas.next() )
+            {
+                System.out.println("CUIT: " + tuplas.getString("CUIT"));
+                System.out.println("Razon Social: " + tuplas.getString("razon_social"));
+                System.out.println("Direccion: " + tuplas.getString("direccion"));
+                System.out.println("Telefono Fijo: " + tuplas.getString("telefono_fijo"));
+            }
+            System.out.println("#####################################");
+        } catch (SQLException e) {
+            System.err.format("SQL State: %s\n%s", e.getSQLState(), e.getMessage());
+        }
     }
 
 } 
