@@ -16,12 +16,11 @@ public class Main {
             while (opcion != 0)
             {
                 System.out.println("#####################################");
-                System.out.println("Opciones (Proveedor) = ");
-                System.out.println("1 - Insertar");
-                System.out.println("2 - Remover");
-                System.out.println("3 - Printear todos");
-                System.out.println("Consultas generales =");
-                System.out.println("4 - ");
+                System.out.println("Opciones = ");
+                System.out.println("1 - Insertar proveedor");
+                System.out.println("2 - Remover proveedor");
+                System.out.println("3 - Printear todos los proveedores");
+                System.out.println("4 - Consultas generales");
                 System.out.println("0 - Terminar programa");
                 System.out.println("#####################################");
 
@@ -55,7 +54,6 @@ public class Main {
             System.out.println("Sentencia vacia");
             return;
         }
-
 
         try (Statement statement = conn.createStatement() )
         {
