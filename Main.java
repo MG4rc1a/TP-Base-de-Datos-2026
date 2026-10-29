@@ -15,11 +15,16 @@ public class Main {
 
             while (opcion != 0)
             {
-                System.out.println();
-                System.out.println();
-                System.out.println();
-                System.out.println();
-                System.out.println();
+                System.out.println("#####################################");
+                System.out.println("Opciones (Proveedor) = ");
+                System.out.println("1 - Inserta");
+                System.out.println("2 - Remover");
+                System.out.println("3 - Printear");
+                System.out.println("Consultas generales =");
+                System.out.println("4 - ");
+                System.out.println("Consultas generales =");
+                System.out.println("0 - ");
+                System.out.println("#####################################");
 
                 try {opcion = Integer.parseInt(sc.nextLine());
                 } catch (NumberFormatException e) {
@@ -28,12 +33,12 @@ public class Main {
                 }
 
                 switch (opcion) {
-                    case 1: gestorProveedor.insert(conn, sc);
-                    case 2: gestorProveedor.delete(conn, sc);
-                    case 3: gestorProveedor.printAll(conn);
-                    case 4: continue;
-                    case 0: System.out.println("Terminando programa");
-                    default: System.out.println("No existe esa opcion");
+                    case 1: gestorProveedor.insert(conn, sc); break;
+                    case 2: gestorProveedor.delete(conn, sc); break;
+                    case 3: gestorProveedor.printAll(conn); break;
+                    case 4: consultaSQL(conn, sc); break;
+                    case 0: System.out.println("Terminando programa"); break;
+                    default: System.out.println("No existe esa opcion"); break;
                 }
             }
         } catch (SQLException e) {
@@ -43,9 +48,8 @@ public class Main {
 
     private static void consultaSQL(Connection conn, Scanner sc)
     {
-        System.out.println();
-        System.out.println();
-        System.out.println();
+        System.out.println("Inserte un comando SQL valido (SELECT, INSERT, DELETE)");
+        System.out.println("");
 
         String query = sc.nextLine().trim();
         if (query.isEmpty())
@@ -67,6 +71,7 @@ public class Main {
                     int totalTuplas = 0;
                     while (tuplas.next() )
                     {
+                        totalTuplas++;
                         System.out.println("-----------------------------------");
                         for (int i = 1; i <= columnas; i++)
                         {
@@ -74,14 +79,17 @@ public class Main {
                             String nombreColumna = metadata.getColumnLabel(i);
                             String atributoAux = atributo != null ? atributo.toString() : "NULL";
                             System.out.println(nombreColumna + " = " + atributoAux);
-                            totalTuplas++;
                         }
                         System.out.println("-----------------------------------");
-                        System.out.println("Cantidad de tuplas retornadas = " + totalTuplas);
                     }
+                    System.out.println("Cantidad de tuplas retornadas = " + totalTuplas);
                 } catch (SQLException e) {
                     System.err.format("SQL State: %s\n%s", e.getSQLState(), e.getMessage());
                 }
+            } else {
+                int tuplas_afectadas = statement.getUpdateCount();
+                String respuesta = (tuplas_afectadas > 0) ? (tuplas_afectadas + " tuplas afectadas") : "No se ha afectado a ninguna tupla";
+                System.out.println(respuesta);
             }
         } catch (SQLException e) {
             System.err.format("SQL State: %s\n%s", e.getSQLState(), e.getMessage());
