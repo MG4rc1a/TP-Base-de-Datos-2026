@@ -21,6 +21,15 @@ public class Main {
                 System.out.println("2 - Remover proveedor");
                 System.out.println("3 - Printear todos los proveedores");
                 System.out.println("4 - Consultas generales");
+                System.out.println("");
+                System.out.println("Consultas predefinidas:");
+                System.out.println("5 - [6.a]");
+                System.out.println("6 - [6.b]");
+                System.out.println("7 - [6.c]");
+                System.out.println("8 - D");
+                System.out.println("9 - E");
+                System.out.println("10 - F");
+                System.out.println("11 - G");
                 System.out.println("0 - Terminar programa");
                 System.out.println("#####################################");
 
@@ -35,6 +44,13 @@ public class Main {
                     case 2: gestorProveedor.delete(conn, sc); break;
                     case 3: gestorProveedor.printAll(conn); break;
                     case 4: comandoSQL(conn, sc); break;
+                    case 5: comandoSQL(conn, PredefinedQuerys.CONSULTA_A); break;
+                    case 6: comandoSQL(conn, PredefinedQuerys.CONSULTA_B); break;
+                    case 7: comandoSQL(conn, PredefinedQuerys.CONSULTA_C); break;
+                    case 8: comandoSQL(conn, PredefinedQuerys.CONSULTA_D); break;
+                    case 9: comandoSQL(conn, PredefinedQuerys.CONSULTA_E); break;
+                    case 10: comandoSQL(conn, PredefinedQuerys.CONSULTA_F); break;
+                    case 11: comandoSQL(conn, PredefinedQuerys.CONSULTA_G); break;
                     case 0: System.out.println("Terminando programa..."); break;
                     default: System.out.println("No existe esa opcion"); break;
                 }

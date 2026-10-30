@@ -13,24 +13,31 @@ public class PredefinedQuerys {
     public static final String CONSULTA_C = "";
 
 
-    // Modelos que nunca se vendieron
+    // Modelos  de zapato que nunca se vendieron
     public static final String CONSULTA_D =
-        "SELECT z.modelo, z.color. z.precio " +
-        "FROM zapato z " +
-        "WHERE z.modelo NOT IN (" +
-        "   SELECT df.modelo " +
-        "   FROM detalle_factura df)";
+    "SELECT z.modelo, z.color, z.precio " +
+    "FROM zapato z " +
+    "WHERE (z.modelo, z.color) NOT IN (" +
+    "   SELECT df.modelo, df.color " +
+    "   FROM detalle_factura df)";
 
     // Todos los clientes con su tipo
     public static final String CONSULTA_E =
     "SELECT c.DNI, c.nombre, c.apellido, 'Mayorista' AS tipo_cliente " +
     "FROM cliente c " +
-    "JOIN mayorista m ON c.DNI = m.DNI" +
+    "JOIN mayorista ma ON c.DNI = ma.DNI " +
     "UNION " +
     "SELECT c.DNI, c.nombre, c.apellido, 'Minorista' AS tipo_cliente " +
     "FROM cliente c " +
-    "JOIN minorista m ON c.DNI = mi.DNI";
+    "JOIN minorista mi ON c.DNI = mi.DNI ";
 
-    public static final String CONSULTA_F = "";
+    // Modelos de zapato con stock <= 5 junto con su proveedor
+    public static final String CONSULTA_F =
+    "SELECT zn.modelo, zn.color, zn.numero, zn.stock, p.razon_social, p.telefono_fijo " +
+    "FROM zapato_numero zn " +
+    "JOIN provee pr ON zn.modelo = pr.modelo AND zn.color = pr.color " +
+    "JOIN proveedor p ON pr.CUIT = p.CUIT " +
+    "WHERE zn.stock <= 5 ";
+
     public static final String CONSULTA_G = "";
 }
