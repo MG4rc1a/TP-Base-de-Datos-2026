@@ -34,7 +34,7 @@ public class Main {
                     case 1: gestorProveedor.insert(conn, sc); break;
                     case 2: gestorProveedor.delete(conn, sc); break;
                     case 3: gestorProveedor.printAll(conn); break;
-                    case 4: consultaSQL(conn, sc); break;
+                    case 4: comandoSQL(conn, sc); break;
                     case 0: System.out.println("Terminando programa..."); break;
                     default: System.out.println("No existe esa opcion"); break;
                 }
@@ -44,11 +44,14 @@ public class Main {
         }
     }
 
-    private static void consultaSQL(Connection conn, Scanner sc)
+    private static void comandoSQL(Connection conn, Scanner sc)
     {
         System.out.println("Inserte un comando SQL valido (SELECT, INSERT, DELETE...)\n");
-
         String query = sc.nextLine().trim();
+        comandoSQL(conn, query);
+    }
+    private static void comandoSQL(Connection conn, String query)
+    {
         if (query.isEmpty())
         {
             System.out.println("Sentencia vacia");

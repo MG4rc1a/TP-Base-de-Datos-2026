@@ -26,6 +26,7 @@ public class GestionarProveedor implements Gestionable {
             statement.setString(3, direccion);
             statement.setString(4, tel_fijo);
             statement.execute();
+            System.out.println("Se ha insertado un nuevo proveedor");
             System.out.println("Comando ejecutado =");
             System.out.println(statement.toString() );
         } catch (SQLException e) {
