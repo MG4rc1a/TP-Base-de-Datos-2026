@@ -23,9 +23,9 @@ public class Main {
                 System.out.println("4 - Consultas generales");
                 System.out.println("");
                 System.out.println("Consultas predefinidas:");
-                System.out.println("5 - [6.a]");
-                System.out.println("6 - [6.b]");
-                System.out.println("7 - [6.c]");
+                System.out.println("5 - [6.a] Devolver el Nº más vendido por c/modelo de zapatos");
+                System.out.println("6 - [6.b] Listado de vendedores con sus ventas totales(monto total) durante 2025.");
+                System.out.println("7 - [6.c] Apellido y Nombre de los vendedores que no han tenido francos en enero de 2026.");
                 System.out.println("8 - D");
                 System.out.println("9 - E");
                 System.out.println("10 - F");
