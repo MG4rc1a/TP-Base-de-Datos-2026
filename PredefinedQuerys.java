@@ -4,7 +4,7 @@ public class PredefinedQuerys {
     */
 
     // Devolver el Nº más vendido por c/modelo de zapatos
-    public static final String CONSULTA_A = "";
+    public static final String CONSULTA_A =
     "SELECT df.modelo, df.numero " +
     "FROM detalle_factura df v " +
     "GROUP BY df.modelo, df.numero " +
@@ -15,7 +15,7 @@ public class PredefinedQuerys {
     "   GROUP BY df2.numero)";
     
     // Listado de vendedores con sus ventas totales(monto total) durante 2025.
-    public static final String CONSULTA_B = "";
+    public static final String CONSULTA_B =
     "SELECT v.nro_vendedor, v.nombre, v.apellido, " +
     "SUM(df.cantidad * df.precio_venta * (1 - df.descuento_aplicado / 100)) AS monto_total " +
     "FROM vendedor v " +
@@ -26,7 +26,7 @@ public class PredefinedQuerys {
     "GROUP BY v.nro_vendedor, v.nombre, v.apellido";
     
     // Apellido y Nombre de los vendedores que no han tenido francos en enero de 2026.
-    public static final String CONSULTA_C = "";
+    public static final String CONSULTA_C =
     "SELECT v.apellido, v.nombre " +
     "FROM vendedor v " +
     "WHERE v.nro_vendedor NOT IN (" +
