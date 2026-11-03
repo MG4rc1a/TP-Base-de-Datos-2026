@@ -100,7 +100,7 @@ public class Main {
                     }
                     System.out.println("Cantidad de tuplas retornadas = " + totalTuplas);
                 } catch (SQLException e) {
-                    System.err.format("SQL State: %s\n%s", e.getSQLState(), e.getMessage());
+                    System.err.format("SQL State: %s\n%s\n", e.getSQLState(), e.getMessage());
                 }
             } else {
                 int tuplas_afectadas = statement.getUpdateCount();
