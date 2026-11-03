@@ -5,13 +5,35 @@ public class PredefinedQuerys {
 
     // Devolver el Nº más vendido por c/modelo de zapatos
     public static final String CONSULTA_A = "";
-
+    "SELECT df.modelo, df.numero " +
+    "FROM detalle_factura df v " +
+    "GROUP BY df.modelo, df.numero " +
+    "HAVING SUM(df.cantidad) >= ALL(" +
+    "   SELECT SUM(df2.cantidad)" +
+    "   FROM detalle_factura df2 " +
+    "   WHERE df2.modelo = df.modelo " +
+    "   GROUP BY df2.numero)";
+    
     // Listado de vendedores con sus ventas totales(monto total) durante 2025.
     public static final String CONSULTA_B = "";
-
+    "SELECT v.nro_vendedor, v.nombre, v.apellido, " +
+    "SUM(df.cantidad * df.precio_venta * (1 - df.descuento_aplicado / 100)) AS monto_total " +
+    "FROM vendedor v " +
+    "JOIN factura f ON v.nro_vendedor = f.nro_vendedor " +
+    "JOIN detalle_factura df ON f.nro_factura = df.nro_factura " +
+    "WHERE f.fecha " +
+    "BETWEEN '2025-01-01' AND '2025-12-31' " +
+    "GROUP BY v.nro_vendedor, v.nombre, v.apellido";
+    
     // Apellido y Nombre de los vendedores que no han tenido francos en enero de 2026.
     public static final String CONSULTA_C = "";
-
+    "SELECT v.apellido, v.nombre " +
+    "FROM vendedor v " +
+    "WHERE v.nro_vendedor NOT IN (" +
+    "   SELECT f.nro_vendedor" +
+    "   FROM franco " +
+    "   WHERE f.fecha " +
+    "   BETWEEN '2026-01-01 AND '2026-01-31)";
 
     // Modelos  de zapato que nunca se vendieron
     public static final String CONSULTA_D =
